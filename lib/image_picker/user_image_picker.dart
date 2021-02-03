@@ -24,14 +24,14 @@ class _UserImagePickerState extends State<UserImagePicker> {
       maxWidth: 150,
     );
 
-    setState(() {
-      if (pickedFile != null) {
+    if (pickedFile != null) {
+      setState(() {
         _pickedImage = File(pickedFile.path);
         widget.imagePickFn(_pickedImage);
-      } else {
-        print('No image selected.');
-      }
-    });
+      });
+    } else {
+      print('No image selected.');
+    }
   }
 
   @override
@@ -49,7 +49,11 @@ class _UserImagePickerState extends State<UserImagePicker> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             FlatButton.icon(
-              onPressed: () => _pickImage(ImageSource.camera),
+              onPressed: () {
+                setState(() {
+                  _pickImage(ImageSource.camera);
+                });
+              },
               icon: Icon(Icons.photo_camera),
               label: Text(
                 'Add Image \nfrom Camera',
@@ -58,7 +62,9 @@ class _UserImagePickerState extends State<UserImagePicker> {
               textColor: Theme.of(context).primaryColor,
             ),
             FlatButton.icon(
-              onPressed: () => _pickImage(ImageSource.gallery),
+              onPressed: () {
+                _pickImage(ImageSource.gallery);
+              },
               icon: Icon(Icons.image),
               label: Text(
                 'Add Image \nfrom Gallery',
