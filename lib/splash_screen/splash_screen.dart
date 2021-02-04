@@ -9,7 +9,7 @@ class SplashScreen extends StatelessWidget {
         child: Text(
           'Loading...',
           style: TextStyle(
-            color: Colors.white,
+            color: Colors.blue[800],
             fontWeight: FontWeight.bold,
           ),
         ),
